@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from src.mysse import mysse
 from src.network_diffusion_model import ndm
-from src.connectome import seed2idx
+from src.seed2idx import seed2idx
 
 CORT_IDX = np.concatenate([np.arange(34), np.arange(49, 83)])
 REF_LIST = pd.read_csv( "../data/TauRegionList.csv")["Raj_label"].tolist()

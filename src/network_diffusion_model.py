@@ -9,7 +9,7 @@ def ndm(conn, x_0, gamma, time, d_t):
     according to the network diffusion model
 
         Parameters:
-            conn : connectome
+            conn : connectome array
             x_0 : initial tau accumulation in each region
             gamma : diffusivity constant
             time : list of time points at which to predict accumulation
