@@ -20,22 +20,3 @@ class Connectome:
     def load_data(self, thr):
         C = prep_connectome(self.path, thr, gm=True, inv=self.inv)
         return C
-
-    def run_ndm(self, dt=1, tmax=3000):
-
-        seed_l_ind, seed_r_ind = seed2idx(self.seed, self.ref_list)
-        C = self.load_data(self.thr)
-        nroi = np.shape(C)[0]
-
-        t = np.arange(0, tmax, dt)
-
-        x0 = np.zeros(nroi)
-        x0[seed_l_ind] = 1
-        x0[seed_r_ind] = 1
-
-        #run model
-        _, x_t = ndm(C, x0, self.gamma, t, dt)
-
-        pred = np.squeeze(x_t[:, -1]) # use final timepoint as the prediction
-
-        return pred
