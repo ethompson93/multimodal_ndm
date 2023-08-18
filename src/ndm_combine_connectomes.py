@@ -13,12 +13,18 @@ def ndm_combine_connectomes(conns, weights, data, seed_region):
     '''
     runs the networks diffusion model
         Parameters:
-            conns : 
-            weights : 
-            data : 
+            conns : a list of connectomes (from connectome class)
+            weights : a list of connectome weights
+            data : array with the target data (eg. group average tau SUVR)
             seed_region : seed region for the initial condition
 
         Returns:
+            dictionary containing:
+                "SSE" : the sum-of-squared-errors betweent the data and 
+                        model prediction at the optimal timepoint
+                "r"   : the Pearson's correlation between the data and the 
+                        model prediction at the optimal timepoint
+                "prediction" : model prediction at the optimal timepoint
     '''
     if len(conns) != len(weights):
         raise ValueError("there need to be the same number of connectomes and weights")
@@ -27,7 +33,7 @@ def ndm_combine_connectomes(conns, weights, data, seed_region):
     thetas = weights/(np.sum(weights))
 
     combined_connectome = 0
-    for theta, conn in zip(conns, thetas):
+    for conn, theta in zip(conns, thetas):
         combined_connectome += theta*(conn.load_data(thr=conn.thr))
 
     #set parameters for network diffusion model

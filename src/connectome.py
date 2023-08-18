@@ -14,7 +14,7 @@ class Connectome:
     def load_data(self, thr):
         ''' loads the connectome from its filename
             Parameters:
-                thr : set the threshold for the connectom
+                thr : set the threshold for the connectome
             Returns:
                 conn : square array of connectome
         '''
