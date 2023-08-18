@@ -13,6 +13,7 @@ import pandas as pd
 from src.network_diffusion_model import ndm
 from src.prep_connectome import prep_connectome
 from src.mysse import mysse
+from src.data_norm import data_norm
 
 ### parse command line arguments ###
 parser = argparse.ArgumentParser()
@@ -87,11 +88,6 @@ def compare(prediction, measured_pattern):
     pred = np.squeeze(prediction[:, np.argmin(sse)])
     corr = np.corrcoef(pred, measured_pattern)[0,1]
     return corr
-
-def data_norm(raw_data):
-    '''min-max normalise the data'''
-    data_normed = (raw_data - np.min(raw_data))/(np.max(raw_data) - np.min(raw_data))
-    return data_normed
 
 # set up the path to save results
 results_dir = f"../results/single_modality/{DATA_NAME}"
