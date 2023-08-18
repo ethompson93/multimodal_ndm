@@ -1,0 +1,5 @@
+{"tractography"   :0.5,
+ "functional"     :0.05,
+ "geodesic"       :0.1,
+ "morphological"  :0.05,
+ "microstructural":0.2}
