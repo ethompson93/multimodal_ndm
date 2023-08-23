@@ -4,11 +4,17 @@ Optimising a multimodal connectome for modelling pathology spread in Alzheimers'
 
 
 ## Installation instructions
-`conda env create --name recoveredenv --file environment.yml`
-`pip install -e .`
+```bash
+# Use conda to install the relevant packages:
+conda env create --name multimodal_ndm --file environment.yml
+conda activate multimodal_ndm
+
+# pip install the source files
+pip install -e .
+```
 
 ## Connectome Data
-[https://doi.org/10.1101/2021.08.04.454795](https://pubmed.ncbi.nlm.nih.gov/36109562/)
+We used multimodal brain connectivity data from the [MICA-MICS dataset](https://osf.io/j532r/): [https://doi.org/10.1101/2021.08.04.454795](https://pubmed.ncbi.nlm.nih.gov/36109562/)
 
 
 ## usage instructions
