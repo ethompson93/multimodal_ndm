@@ -16,21 +16,21 @@ parser.add_argument('data_name',
 					help="name for the data, eg. tau, atrophy")
 parser.add_argument('data_path',
 					help="path to the csv where the data is saved")
-parser.add_argument('-c','--conn_names',
-					choices=["tractography", "geodesic", "functional", "morphological", "microstructural"],
+parser.add_argument('conn_names',
 					nargs="*",
-					help = "select the connectomes you want to include in the combined connectome")
+					help = "select the connectomes you want to include in the combined connectome, \
+                    options = {tractography, geodesic, functional, morphological, microstructural}")
 parser.add_argument('-n_iter',
 					type=int,
 					default=500,
-					help="number of iterations for the GP minimiser")
+					help="number of iterations for the GP minimiser (default=500)")
 parser.add_argument('-n_starts',
 					type=int,
 					default=300,
-					help="number of random initialisations for the GP minimiser")
+					help="number of random initialisations for the GP minimiser (default=300)")
 parser.add_argument('-seed',
 					default="Inferiortemporal",
-					help="seed region to initialise the network diffusion model")
+					help="seed region to initialise the network diffusion model (default=Inferiortemporal)")
 args = parser.parse_args()
 
 DATA_NAME = args.data_name
@@ -55,11 +55,11 @@ if not os.path.exists(RESULTS_DIR):
 REF_LIST = pd.read_csv( f"{DATA_DIR}/TauRegionList.csv")["Raj_label"].tolist()
 
 # load in the connectomes
-sc = Connectome("tractography", f"{DATA_DIR}/tractography.csv")
-fc = Connectome("functional", f"{DATA_DIR}/functional.csv")
-geo = Connectome("geodesic", f"{DATA_DIR}/geodesic.csv", inv=True)
-morph = Connectome("morphological", f"{DATA_DIR}/morphological.csv")
-mpc = Connectome("microstructural", f"{DATA_DIR}/microstructural.csv")
+sc = Connectome("tractography", f"{DATA_DIR}/connectomes/tractography.csv")
+fc = Connectome("functional", f"{DATA_DIR}/connectomes/functional.csv")
+geo = Connectome("geodesic", f"{DATA_DIR}/connectomes/geodesic.csv", inv=True)
+morph = Connectome("morphological", f"{DATA_DIR}/connectomes/morphological.csv")
+mpc = Connectome("microstructural", f"{DATA_DIR}/connectomes/microstructural.csv")
 
 modalities = [sc, fc, geo, morph, mpc]
 
@@ -94,7 +94,7 @@ while os.path.isfile(filename.format(counter)):
     counter += 1
 filename = filename.format(counter)
 
-del results.specs['args']['func'] # deleye to save space
+del results.specs['args']['func'] # delete to save space
 del results['models']
 results['best_params'] = best_params
 skopt.dump(results,filename)
