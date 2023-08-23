@@ -1,5 +1,5 @@
 # multimodal_ndm
-This repository contains code to optimise a multimodal connectome for modelling pathology propagation with the network diffusion model ([Raj et al, 2012](https://www.sciencedirect.com/science/article/pii/S0896627312001353)). More information can be found in the corresponding manuscript: "Combining multimodal connectivity information improves modelling of pathology spread in Alzheimer's Disease". 
+This repository contains code to optimise a multimodal connectome for modelling pathology propagation in neurodegenerative disease, with the network diffusion model ([Raj et al, 2012](https://www.sciencedirect.com/science/article/pii/S0896627312001353)). More information can be found in the corresponding manuscript: "Combining multimodal connectivity information improves modelling of pathology spread in Alzheimer's Disease". 
 
 ## Installation Instructions
 ```bash
@@ -22,8 +22,8 @@ In our manuscript, we compare the model predictions with pathology data: tau-PET
 All the data used in the analysis was parcellated with the Desikan-Killiany atlas. We have included a dummy dataset (`data/dummmy_pathology.csv`) for testing. When using your own pathology data, make sure that the parcels follow the correct order, as given in `data/TauRegionList.csv`.
 
 ## Usage Instructions
-### unimodal connectomes
-To run the network diffusion model with a single connectome as the substrate, you can run `scripts/run_ndm.py`.
+### Unimodal Connectomes
+To run the network diffusion model with a single connectome as the substrate, you can run `scripts/run_ndm.py`. The script lets you specify a threshold for the connectome, and runs the network diffusion model 42 times, for each bilateral seed region in the Desikan-Killiany atlas. Results are saved in `results/single_modality/{data_name}/{conn_type}_thr{thr}_av_r.csv`.
 
 ```
 usage: run_ndm.py [-h] conn_type conn_path thr data_path data_name
@@ -72,6 +72,8 @@ python run_optimisation.py atrophy ../data/atrophy_data.csv tractography functio
 There must be a .txt file present in `data` specifying the threshold values to use for each connectome. Examples are already provided with the optimal thresholds for the tau and atrophy datasets used in the paper, as well as for the dummy dataset (ie. `data/dummy_thresholds.txt`). 
 
 Seed regions are bilateral and currently limited to those in the Desikan-Killiany atlas. Region names must be formated as in the first column of `data/TauRegionList.csv`, without the `_L` or `_R` subscript (eg. `Paracentral`, `Fusiform`).
+
+Results of the analysis are saved as a pickle file in `results/optimisations/{data_name}/{seed}`
 
 ## Citation
 Citation (preprint): E. Thompson, A. Schroder, T. He, C. Shand, S. Soskic, N.P. Oxtoby, F. Barkhof, D.C. Alexander, "Combining multimodal connectivity information improves modelling of pathology spread in Alzheimer's Disease", 
