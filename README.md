@@ -41,7 +41,7 @@ optional arguments:
 For example, to evaluate the performance of the model for modelling your tau data with a connectome from tractography as a substrate, you would run: 
 
 ```
-python run_ndm.py tractography ../data/connectomes/tractography.csv 0.1 ../data/tau_data.csv tau
+python run_ndm.py tractography ../data/connectomes/tractography.csv 0.1 ../data/dummy_pathology.csv tau
 ```
 
 ### multimodal connectome optimisation
@@ -66,7 +66,7 @@ optional arguments:
 Example usage:
 
 ```
-python run_optimisation.py atrophy ../data/atrophy_data.csv tractography functional morphological -seed Entorhinal
+python run_optimisation.py atrophy ../data/dummy_pathology.csv tractography functional morphological -seed Entorhinal
 ```
 
 There must be a .txt file present in `data` specifying the threshold values to use for each connectome. Examples are already provided with the optimal thresholds for the tau and atrophy datasets used in the paper, as well as for the dummy dataset (ie. `data/dummy_thresholds.txt`). 
