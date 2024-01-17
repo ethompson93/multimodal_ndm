@@ -76,5 +76,5 @@ Seed regions are bilateral and currently limited to those in the Desikan-Killian
 Results of the analysis are saved as a pickle file in `results/optimisations/{data_name}/{seed}`
 
 ## Citation
-Citation (preprint): E. Thompson, A. Schroder, T. He, C. Shand, S. Soskic, N.P. Oxtoby, F. Barkhof, D.C. Alexander, "Combining multimodal connectivity information improves modelling of pathology spread in Alzheimer's Disease", 
+Citation: E. Thompson, A. Schroder, T. He, C. Shand, S. Soskic, N.P. Oxtoby, F. Barkhof, D.C. Alexander, "Combining multimodal connectivity information improves modelling of pathology spread in Alzheimer's Disease", Imaging Neuroscience (2024)
 
